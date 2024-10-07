@@ -2,6 +2,7 @@
 Library  Browser
 Library  OperatingSystem
 Library  ExcelLibrary
+Library  libraries/foobar.py
 
 *** Variables ***
 ${URL}  https://rpachallenge.com
@@ -27,4 +28,5 @@ Extract data from challenge.xlsx
   ${address}=          Read Excel Column  col_num=5  row_offset=1  max_num=10  sheet_name=Sheet1
   ${email}=            Read Excel Column  col_num=6  row_offset=1  max_num=10  sheet_name=Sheet1
   ${phone_number}=     Read Excel Column  col_num=7  row_offset=1  max_num=10  sheet_name=Sheet1
+  ${foobar}=           Foo Bar
   Close All Excel Documents
