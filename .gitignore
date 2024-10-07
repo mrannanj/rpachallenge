@@ -1,4 +1,7 @@
 /*.log
 /*.html
 /*.xml
-/output
+/tests/output
+
+__pycache__
+*.pyc
