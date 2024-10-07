@@ -28,15 +28,20 @@ Extract data from challenge.xlsx and fill it in
   ${phone_number}=     Read Excel Column  col_num=7  row_offset=1  max_num=10  sheet_name=Sheet1
   Close All Excel Documents
 
-  New Persistent Context  headless=No  slowMo=1
-  New Page    ${URL}
-  Fill Text   //input[@ng-reflect-name="labelFirstName"]    ${first_name[0]}
-  Fill Text   //input[@ng-reflect-name="labelLastName"]     ${last_name[0]}
-  Fill Text   //input[@ng-reflect-name="labelCompanyName"]  ${company_name[0]}
-  Fill Text   //input[@ng-reflect-name="labelRole"]         ${role_in_company[0]}
-  Fill Text   //input[@ng-reflect-name="labelAddress"]      ${address[0]}
-  Fill Text   //input[@ng-reflect-name="labelEmail"]        ${email[0]}
-  Fill Text   //input[@ng-reflect-name="labelPhone"]        ${phone_number[0]}
-  ${submit}=  Get Element By Role  BUTTON  name=Submit
-  Click       ${submit}
+  New Persistent Context  headless=No
+  New Page   ${URL}
+  ${len}=    Get Length  ${first_name}
+  ${start}=  Get Element By Role  BUTTON  name=Start
+  Click      ${start}
+  FOR  ${i}  IN RANGE  ${len}
+    Fill Text   //input[@ng-reflect-name="labelFirstName"]    ${first_name[${i}]}
+    Fill Text   //input[@ng-reflect-name="labelLastName"]     ${last_name[${i}]}
+    Fill Text   //input[@ng-reflect-name="labelCompanyName"]  ${company_name[${i}]}
+    Fill Text   //input[@ng-reflect-name="labelRole"]         ${role_in_company[${i}]}
+    Fill Text   //input[@ng-reflect-name="labelAddress"]      ${address[${i}]}
+    Fill Text   //input[@ng-reflect-name="labelEmail"]        ${email[${i}]}
+    Fill Text   //input[@ng-reflect-name="labelPhone"]        ${phone_number[${i}]}
+    ${submit}=  Get Element By Role  BUTTON  name=Submit
+    Click       ${submit}
+  END
   Close Browser
