@@ -28,7 +28,7 @@ Extract data from challenge.xlsx and fill it in
   ${phone_number}=     Read Excel Column  col_num=7  row_offset=1  max_num=10  sheet_name=Sheet1
   Close All Excel Documents
 
-  New Persistent Context  headless=No
+  New Persistent Context
   New Page   ${URL}
   ${len}=    Get Length  ${first_name}
   ${start}=  Get Element By Role  BUTTON  name=Start
