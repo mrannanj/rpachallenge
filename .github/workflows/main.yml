@@ -1,0 +1,23 @@
+name: Run Robot
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Python requirements
+        run: pip install --upgrade -r requirements.txt
+
+      - name: Install Playwright browsers
+        run: rfbrowser init
+
+      - name: Run robot
+        run: robot tests
